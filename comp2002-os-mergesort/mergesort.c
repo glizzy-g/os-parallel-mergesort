@@ -44,15 +44,15 @@ void my_mergesort(int left, int right){
 void * parallel_mergesort(void *arg){
 	struct argument* a = (struct argument*)arg;
 
-	if(a->level <= 0){
+	if(a->level >= cutoff){
 		my_mergesort(a->left, a->right);
 		return NULL;
 	}
 
 	int mid = (a->left+a->right)/2;
 
-	struct argument* b = buildArgs(a->left, mid, a->level-1);
-	struct argument* c = buildArgs(mid+1, a->right, a->level-1);
+	struct argument* b = buildArgs(a->left, mid, a->level+1);
+	struct argument* c = buildArgs(mid+1, a->right, a->level+1);
 
 	pthread_t t1, t2;
 	pthread_create(&t1, NULL, parallel_mergesort, b);
