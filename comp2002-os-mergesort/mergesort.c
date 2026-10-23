@@ -11,9 +11,10 @@
 void merge(int leftstart, int leftend, int rightstart, int rightend){
 	int i = leftstart;
 	int j = rightstart;
+	int k;
 
-	for(int k=leftstart; k<=rightend; k++){
-		if(i<=leftend & (j>rightend || A[i] <= A[j])) {
+	for(k=leftstart; k<=rightend; k++){
+		if((i<=leftend) & (j>rightend || A[i] <= A[j])) {
 			B[k] = A[i];
 			i++;
 		} else {
