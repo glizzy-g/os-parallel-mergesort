@@ -44,7 +44,7 @@ void my_mergesort(int left, int right){
 void * parallel_mergesort(void *arg){
 	struct argument* a = (struct argument*)arg;
 
-	if(a->level >= cutoff){
+	if((a->level >= cutoff) || (a->left >= a->right)){
 		my_mergesort(a->left, a->right);
 		return NULL;
 	}
